@@ -1,0 +1,457 @@
+{
+  "pack": "ALIVE V4 Slice 01 Production Asset Pack",
+  "status": "PENDING VISUAL APPROVAL",
+  "primarySource": "ALIVE V4 Slice 01 Clean Cropped Assets Master Sheet",
+  "validationSources": [
+    "alive 01–05 Master Art Boards"
+  ],
+  "assets": [
+    {
+      "id": "zhanzhan_morning",
+      "file": "characters/zhanzhan/zhanzhan_morning.png",
+      "category": "character",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 155,
+      "height": 202,
+      "anchorX": 0.5,
+      "anchorY": 0.96,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "b466fb863d74ef1272f0d1b850c8e680776994b5146e292655036f9dd0ea14c1"
+    },
+    {
+      "id": "zhanzhan_neutral",
+      "file": "characters/zhanzhan/zhanzhan_neutral.png",
+      "category": "character",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 155,
+      "height": 202,
+      "anchorX": 0.5,
+      "anchorY": 0.96,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "5efa944741a8c6f7753dcb1932d5d2b568ad8704ba8ffabdb8f19a5f8a5a5785"
+    },
+    {
+      "id": "zhanzhan_tired",
+      "file": "characters/zhanzhan/zhanzhan_tired.png",
+      "category": "character",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 155,
+      "height": 202,
+      "anchorX": 0.5,
+      "anchorY": 0.96,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "69d00981bbeab89e596c37251b5ca0b3988bcb0a6cf1c33301528706f8ed9751"
+    },
+    {
+      "id": "zhanzhan_settled",
+      "file": "characters/zhanzhan/zhanzhan_settled.png",
+      "category": "character",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 155,
+      "height": 202,
+      "anchorX": 0.5,
+      "anchorY": 0.96,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "a48bad3df14644e339c674468c8f424a648e8390b912ae0d6ea93b57cfc4ecf1"
+    },
+    {
+      "id": "smoke_beast_encounter",
+      "file": "characters/smoke-beast/smoke_beast_encounter.png",
+      "category": "character",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 144,
+      "height": 142,
+      "anchorX": 0.5,
+      "anchorY": 0.96,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "3d34cda854fa6d2088d4a5625d97c82c6b63296ea118024201e20310a2957f70"
+    },
+    {
+      "id": "smoke_beast_normal",
+      "file": "characters/smoke-beast/smoke_beast_normal.png",
+      "category": "character",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 159,
+      "height": 157,
+      "anchorX": 0.5,
+      "anchorY": 0.96,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "2d471feed2acef79db22ffe8606214d666fe1cce2d4eaa9eb60c133f9d43561d"
+    },
+    {
+      "id": "smoke_beast_eating",
+      "file": "characters/smoke-beast/smoke_beast_eating.png",
+      "category": "character",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 164,
+      "height": 157,
+      "anchorX": 0.5,
+      "anchorY": 0.96,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "48353387d76b3e8a71eb32889293f8be8d1ba8e6c4180919f523b634d6ae4a89"
+    },
+    {
+      "id": "smoke_beast_full",
+      "file": "characters/smoke-beast/smoke_beast_full.png",
+      "category": "character",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 163,
+      "height": 157,
+      "anchorX": 0.5,
+      "anchorY": 0.96,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "102a8ce930672bc44386c0be747dd3d2e9c957ca44e76ba6810857ed3522f7de"
+    },
+    {
+      "id": "room_bed",
+      "file": "room/room_bed.png",
+      "category": "room",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 198,
+      "height": 126,
+      "anchorX": 0.5,
+      "anchorY": 0.96,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "948c8ef8c50f0a2eae8a60c49529835a1e05b916d3ab2825ff1db6915e0329cc"
+    },
+    {
+      "id": "room_table",
+      "file": "room/room_table.png",
+      "category": "room",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 166,
+      "height": 126,
+      "anchorX": 0.5,
+      "anchorY": 0.96,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "037851250cd8b7632c4093482f55fc608787c08de9708f913d81183f5b6ba1b9"
+    },
+    {
+      "id": "room_stool",
+      "file": "room/room_stool.png",
+      "category": "room",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 120,
+      "height": 126,
+      "anchorX": 0.5,
+      "anchorY": 0.96,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "61bd40781b8d53f0d27cead39527c3c2af3b0ed401bda79b754018c693e647f7"
+    },
+    {
+      "id": "room_window",
+      "file": "room/room_window.png",
+      "category": "room",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 155,
+      "height": 140,
+      "anchorX": 0.5,
+      "anchorY": 0.98,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "a901f98c48c890d26c83ee67bbfa96cc04df999e0fe2d93d4cc75e605e3e359e"
+    },
+    {
+      "id": "room_lamp",
+      "file": "room/room_lamp.png",
+      "category": "room",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 118,
+      "height": 130,
+      "anchorX": 0.5,
+      "anchorY": 0.96,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "865d62eeda7eb4f9c2785bf394096b5c38dd49420755e19d43d1a4055d568422"
+    },
+    {
+      "id": "room_cup",
+      "file": "room/room_cup.png",
+      "category": "room",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 132,
+      "height": 126,
+      "anchorX": 0.5,
+      "anchorY": 0.96,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "935dee244669e976b6e7f329c5bef415de85a4cd121a49f5adff54f261085bfc"
+    },
+    {
+      "id": "room_rug",
+      "file": "room/room_rug.png",
+      "category": "room",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 226,
+      "height": 120,
+      "anchorX": 0.5,
+      "anchorY": 0.96,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "d8662ccb88977626fa821508b0ba160fdde0ab5c8a4e6633ee7850bd1b800e5f"
+    },
+    {
+      "id": "room_slippers",
+      "file": "room/room_slippers.png",
+      "category": "room",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 163,
+      "height": 130,
+      "anchorX": 0.5,
+      "anchorY": 0.96,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "bd3d824ffc403a9627a65e45faf8945691c7a454634381e49894a83679121ebc"
+    },
+    {
+      "id": "egg_still",
+      "file": "world/egg_still.png",
+      "category": "world",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 154,
+      "height": 126,
+      "anchorX": 0.5,
+      "anchorY": 0.98,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "b2f300c279ca5f7816dac939098b08c9902aece1b9836f3973a39fa6541653bc"
+    },
+    {
+      "id": "plant_stage_a",
+      "file": "world/plant_stage_a.png",
+      "category": "world",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 128,
+      "height": 136,
+      "anchorX": 0.5,
+      "anchorY": 0.98,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "aaf1c462672ea64734acc316558cc8fb747ddac474e2cfe2fd13a8355477333e"
+    },
+    {
+      "id": "plant_stage_b",
+      "file": "world/plant_stage_b.png",
+      "category": "world",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 132,
+      "height": 140,
+      "anchorX": 0.5,
+      "anchorY": 0.98,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "2efe45865d83879754598bf6520bc3b93583d02365c83981b420decace6958f4"
+    },
+    {
+      "id": "window_early",
+      "file": "world/window_early.png",
+      "category": "world",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 172,
+      "height": 136,
+      "anchorX": 0.5,
+      "anchorY": 0.98,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "0527a85cd05760cd454e23fa35ce73d9e8cda4ed1d52decbd9a653f7f4bb920e"
+    },
+    {
+      "id": "ui_tape_yellow",
+      "file": "ui/ui_tape_yellow.png",
+      "category": "ui",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 116,
+      "height": 83,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "8b291adbded72ce507c2cae21661f64e20ab37084f4cada04d867be1374c6eb1"
+    },
+    {
+      "id": "ui_tape_red",
+      "file": "ui/ui_tape_red.png",
+      "category": "ui",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 116,
+      "height": 83,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "5e00d234be8ed6bac8f1af45fd6bb0a4913d8f1c15b9578b1153ace5c81e2029"
+    },
+    {
+      "id": "ui_note_paper",
+      "file": "ui/ui_note_paper.png",
+      "category": "ui",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 112,
+      "height": 100,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "537335992c03ea791fa767ed3de322fb6eea97130b0d2123d5a752f27d0dbe87"
+    },
+    {
+      "id": "ui_speech_bubble",
+      "file": "ui/ui_speech_bubble.png",
+      "category": "ui",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 138,
+      "height": 100,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "e006d14282bdc48067a919393395132e1557eacb414e4d079312157084166a40"
+    },
+    {
+      "id": "ui_heart",
+      "file": "ui/ui_heart.png",
+      "category": "ui",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 112,
+      "height": 101,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "8cfb8233b70212e087028d57df81607ad2f288c4209de8f63656d2adcec3b8f1"
+    },
+    {
+      "id": "ui_smoke_icon",
+      "file": "ui/ui_smoke_icon.png",
+      "category": "ui",
+      "source": "ALIVE_V4_SLICE01_CLEAN_CROPPED_ASSETS",
+      "validationSource": [
+        "alive 01–05 Master Art Boards"
+      ],
+      "width": 95,
+      "height": 105,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "alpha": true,
+      "sourceResolutionLimited": true,
+      "qaStatus": "PASS",
+      "sha256": "880a6b68beaa2fb109ffcc6b44c9e7353dc61546771ff9a3df17a17782e95f14"
+    }
+  ],
+  "counts": {
+    "expected": 26,
+    "pass": 26,
+    "fail": 0
+  }
+}

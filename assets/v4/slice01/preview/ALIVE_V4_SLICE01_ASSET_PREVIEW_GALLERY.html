@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>ALIVE V4 · Slice 01 Asset Preview Gallery</title>
+  <style>
+    :root{--paper:#f7f3e8;--ink:#111;--yellow:#ffd234;--red:#e6453a;--green:#4caf50;--blue:#4e8df5;--line:3px solid var(--ink)}
+    *{box-sizing:border-box} body{margin:0;background:#151515;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+    main{max-width:1320px;margin:0 auto;background:var(--paper);min-height:100vh;padding:28px clamp(16px,4vw,52px) 72px}
+    h1,h2,h3,p{margin:0} h1{font-size:clamp(30px,5vw,68px);line-height:.95;letter-spacing:-.06em;text-transform:uppercase}
+    h2{font-size:20px;letter-spacing:.02em;text-transform:uppercase;border-bottom:var(--line);padding:10px 0;margin-bottom:18px}
+    h3{font-size:14px;margin-top:10px} .kicker{display:inline-block;background:var(--ink);color:#fff;padding:7px 10px;font-weight:800;letter-spacing:.08em;margin:12px 0 18px}
+    .intro{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;border-bottom:var(--line);padding-bottom:22px;margin-bottom:28px}
+    .note{max-width:360px;background:var(--yellow);border:var(--line);padding:14px 16px;box-shadow:7px 7px 0 var(--ink);font-weight:700;line-height:1.35;transform:rotate(1deg)}
+    section{margin:30px 0 42px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+    .card{border:var(--line);background:#fffaf0;min-height:180px;padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;box-shadow:4px 4px 0 var(--ink)}
+    .card.wide{align-items:stretch}.asset{width:100%;height:150px;object-fit:contain}.asset.tall{height:210px}.asset.small{height:92px}.source{font-size:11px;color:#554f43;margin-top:4px;text-align:center}
+    .checker{background-color:#fff;border-radius:3px;background-image:linear-gradient(45deg,#e8e8e8 25%,transparent 25%),linear-gradient(-45deg,#e8e8e8 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#e8e8e8 75%),linear-gradient(-45deg,transparent 75%,#e8e8e8 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0}
+    .composition{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}.composition img{width:100%;display:block;border:var(--line);background:#fffaf0;box-shadow:5px 5px 0 var(--ink)}
+    .scale-stage{height:290px;position:relative;border:var(--line);background:#fffaf0;overflow:hidden;display:flex;align-items:flex-end;justify-content:space-evenly;padding:0 10px 16px;box-shadow:5px 5px 0 var(--ink)}
+    .scale-stage:after{content:"";position:absolute;left:0;right:0;bottom:18px;border-bottom:3px solid var(--ink)}
+    .scale-stage img{position:relative;z-index:1;object-fit:contain;object-position:center bottom;max-width:26%;height:220px}.scale-stage img:nth-child(2){height:110px}.scale-stage img:nth-child(3){height:145px}.scale-stage img:nth-child(4){height:92px}
+    .legend{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0}.legend span{border:2px solid var(--ink);padding:5px 8px;font-size:12px;font-weight:700;background:#fffaf0}.legend .yellow{background:var(--yellow)}.legend .red{background:var(--red)}.legend .green{background:var(--green)}.legend .blue{background:var(--blue)}
+    footer{border-top:var(--line);padding-top:16px;margin-top:50px;font-size:12px;line-height:1.5}.warning{color:#7b170f;font-weight:700}
+    @media(max-width:560px){main{padding-top:18px}.intro{display:block}.note{margin-top:26px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card{min-height:155px;padding:8px}.asset{height:118px}.asset.tall{height:170px}.scale-stage{height:220px}.scale-stage img{height:170px}.scale-stage img:nth-child(2){height:82px}.scale-stage img:nth-child(3){height:105px}.scale-stage img:nth-child(4){height:70px}}
+  </style>
+</head>
+<body>
+<main>
+  <div class="intro"><div><div class="kicker">ASSET CLEANUP PASS · VISUAL QA</div><h1>ALIVE V4<br>SLICE 01<br>ASSET PREVIEW</h1><div class="legend"><span class="yellow">CLEANED</span><span class="red">MASTER BOARD</span><span class="green">TRANSPARENT CUTOUT</span><span class="blue">SCALE TEST</span></div></div><div class="note">本图库只用于验收。指定资产已完成裁剪与透明化清稿，尚未接入网站。</div></div>
+
+  <section><h2>01 · 詹詹 / ZHANZHAN</h2><div class="grid">
+    <article class="card checker"><img class="asset tall" src="../characters/zhanzhan/zhanzhan_morning.png"><h3>zhanzhan_morning</h3><div class="source">alive 01 · 坐着</div></article>
+    <article class="card checker"><img class="asset tall" src="../characters/zhanzhan/zhanzhan_neutral.png"><h3>zhanzhan_neutral</h3><div class="source">alive 01 · 站立</div></article>
+    <article class="card checker"><img class="asset tall" src="../characters/zhanzhan/zhanzhan_tired.png"><h3>zhanzhan_tired</h3><div class="source">alive 01 · 累了</div></article>
+    <article class="card checker"><img class="asset tall" src="../characters/zhanzhan/zhanzhan_settled.png"><h3>zhanzhan_settled</h3><div class="source">alive 01 · 坐着 / settled slot</div></article>
+  </div></section>
+
+  <section><h2>02 · 烟雾兽 / SMOKE BEAST</h2><div class="grid">
+    <article class="card checker"><img class="asset" src="../characters/smoke-beast/smoke_beast_encounter.png"><h3>smoke_beast_encounter</h3><div class="source">alive 01 · 第一次相遇</div></article>
+    <article class="card checker"><img class="asset" src="../characters/smoke-beast/smoke_beast_normal.png"><h3>smoke_beast_normal</h3><div class="source">alive 05 · 普通</div></article>
+    <article class="card checker"><img class="asset" src="../characters/smoke-beast/smoke_beast_eating.png"><h3>smoke_beast_eating</h3><div class="source">alive 02 · Smoke +1</div></article>
+    <article class="card checker"><img class="asset" src="../characters/smoke-beast/smoke_beast_full.png"><h3>smoke_beast_full</h3><div class="source">alive 02 · Bad Day / 吃撑</div></article>
+  </div></section>
+
+  <section><h2>03 · ROOM ZERO OBJECTS</h2><div class="grid">
+    <article class="card checker"><img class="asset" src="../room/bed.png"><h3>bed</h3><div class="source">alive 01</div></article>
+    <article class="card checker"><img class="asset" src="../room/table.png"><h3>table</h3><div class="source">alive 01</div></article>
+    <article class="card checker"><img class="asset" src="../room/stool.png"><h3>stool</h3><div class="source">alive 01</div></article>
+    <article class="card checker"><img class="asset" src="../room/window.png"><h3>window</h3><div class="source">alive 01</div></article>
+    <article class="card checker"><img class="asset" src="../room/lamp.png"><h3>lamp</h3><div class="source">alive 01</div></article>
+    <article class="card checker"><img class="asset" src="../room/cup.png"><h3>cup</h3><div class="source">alive 01</div></article>
+    <article class="card checker"><img class="asset" src="../room/rug.png"><h3>rug</h3><div class="source">alive 01</div></article>
+    <article class="card checker"><img class="asset" src="../room/slippers.png"><h3>slippers</h3><div class="source">alive 01</div></article>
+  </div></section>
+
+  <section><h2>04 · EGG + PLANT + WINDOW</h2><div class="grid">
+    <article class="card checker"><img class="asset tall" src="../world/egg_still.png"><h3>egg_still</h3><div class="source">alive 01 · 神秘蛋</div></article>
+    <article class="card checker"><img class="asset" src="../world/plant_stage_a.png"><h3>plant_stage_a</h3><div class="source">alive 01 · 小芽</div></article>
+    <article class="card checker"><img class="asset" src="../world/plant_stage_b.png"><h3>plant_stage_b</h3><div class="source">alive 01 · 两片叶</div></article>
+    <article class="card checker"><img class="asset" src="../world/window_early.png"><h3>window_early</h3><div class="source">alive 01 · 窗外早期</div></article>
+  </div></section>
+
+  <section><h2>05 · UI MICRO ASSETS</h2><div class="grid">
+    <article class="card checker"><img class="asset small" src="../ui/tape_yellow.png"><h3>tape_yellow</h3></article>
+    <article class="card checker"><img class="asset small" src="../ui/tape_red.png"><h3>tape_red</h3></article>
+    <article class="card checker"><img class="asset small" src="../ui/note_paper.png"><h3>note_paper</h3></article>
+    <article class="card checker"><img class="asset small" src="../ui/speech_bubble.png"><h3>speech_bubble</h3></article>
+    <article class="card checker"><img class="asset small" src="../ui/heart.png"><h3>heart</h3></article>
+    <article class="card checker"><img class="asset small" src="../ui/smoke_icon.png"><h3>smoke_icon</h3></article>
+  </div></section>
+
+  <section><h2>06 · SCALE TEST · SAME HORIZON</h2><div class="scale-stage checker"><img src="../characters/zhanzhan/zhanzhan_neutral.png"><img src="../characters/smoke-beast/smoke_beast_normal.png"><img src="../world/egg_still.png"><img src="../world/plant_stage_b.png"></div><div class="source">詹詹 · 烟雾兽 · 蛋 · 植物。用于先验收彼此尺寸关系。</div></section>
+
+  <section><h2>07 · ROOM ZERO MASTER COMPOSITION</h2><div class="composition"><div><img src="room_zero_master_composition.png"><h3>ROOM ZERO · MASTER CROP</h3><div class="source">alive 02 · Morning room scene</div></div><div><img src="room_zero_folded_like.png"><h3>FOLDED-LIKE CROP</h3><div class="source">alive 03 · Find N6 action view</div></div><div><img src="room_zero_unfolded_like.png"><h3>UNFOLDED-LIKE CROP</h3><div class="source">alive 03 · Find N6 world view</div></div></div></section>
+
+  <footer><div class="warning">本轮已处理：smoke_beast_full、smoke_beast_eating、window_early、tape_yellow、note_paper、smoke_icon、zhanzhan_tired、egg_still，并复查 bed / table 的残留碎片。资产仍只用于验收，本轮不将任何资产接入网站。</div><p>Source boards archived in <code>masters/</code>. Gallery path: <code>assets/v4/slice01/preview/</code>.</p></footer>
+</main>
+</body></html>

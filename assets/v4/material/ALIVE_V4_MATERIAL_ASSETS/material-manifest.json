@@ -1,0 +1,152 @@
+{
+  "package": "ALIVE_V4_MATERIAL_ASSETS",
+  "status": "PENDING USER VISUAL APPROVAL",
+  "source": "ALIVE V4 · ROOM ZERO · MATERIAL & UI TEXTURE KIT.png",
+  "colorSpace": "sRGB",
+  "format": "PNG RGBA",
+  "assets": [
+    {
+      "id": "texture_paper",
+      "file": "texture_paper.png",
+      "category": "texture",
+      "width": 812,
+      "height": 540,
+      "aspectRatio": 1.5037,
+      "alpha": true,
+      "qaStatus": "PASS",
+      "sha256": "bfa257ce8b5365d1df1ab18c3a35c814db011f9dea4be79504f7791726982f67",
+      "notes": "2x2 tile; source crop is clean of card border",
+      "tileMode": "repeat / 2x2 QA tested"
+    },
+    {
+      "id": "texture_wall",
+      "file": "texture_wall.png",
+      "category": "texture",
+      "width": 666,
+      "height": 172,
+      "aspectRatio": 3.8721,
+      "alpha": true,
+      "qaStatus": "PASS",
+      "sha256": "78a517e264e8acbd3c925187eb4c5f35054cbe08a1be0c3d2923e9fe6973c16b",
+      "notes": "2x2 tile; source crop is clean of card border",
+      "tileMode": "repeat / 2x2 QA tested"
+    },
+    {
+      "id": "texture_floor",
+      "file": "texture_floor.png",
+      "category": "texture",
+      "width": 666,
+      "height": 212,
+      "aspectRatio": 3.1415,
+      "alpha": true,
+      "qaStatus": "PASS",
+      "sha256": "377ec8f8dbbd721c39ac16d3772cea298ed080679e753de1fb25dc16f0259c85",
+      "notes": "2x2 tile; source crop is clean of card border",
+      "tileMode": "repeat / 2x2 QA tested"
+    },
+    {
+      "id": "frame_panel",
+      "file": "frame_panel.png",
+      "category": "frame",
+      "width": 294,
+      "height": 159,
+      "aspectRatio": 1.8491,
+      "alpha": true,
+      "qaStatus": "PASS",
+      "sha256": "43e1b5dfd94b1781ddf52a19dfb30885b93cee1b200fc119ae8493f4186a8a5f",
+      "notes": "nine-slice shell; protected corners 20px",
+      "safeStretchArea": "center region only",
+      "protectedCorners": "20px on all sides",
+      "recommendedNineSliceInsets": [
+        20,
+        20,
+        20,
+        20
+      ]
+    },
+    {
+      "id": "frame_button_secondary",
+      "file": "frame_button_secondary.png",
+      "category": "frame",
+      "width": 290,
+      "height": 102,
+      "aspectRatio": 2.8431,
+      "alpha": true,
+      "qaStatus": "PASS",
+      "sha256": "a57187130fc8445cce9806ba1a350ced12282ba72f5aac4fc046621067d17e1a",
+      "notes": "nine-slice shell; protected corners 20px",
+      "safeStretchArea": "center region only",
+      "protectedCorners": "20px on all sides",
+      "recommendedNineSliceInsets": [
+        20,
+        20,
+        20,
+        20
+      ]
+    },
+    {
+      "id": "frame_cta_black",
+      "file": "frame_cta_black.png",
+      "category": "frame",
+      "width": 286,
+      "height": 97,
+      "aspectRatio": 2.9485,
+      "alpha": true,
+      "qaStatus": "PASS",
+      "sha256": "3d7b63da576464735f71a0ff5e13d396eba735f95f7148f873aafd9ece16b5e3",
+      "notes": "nine-slice shell; protected corners 20px",
+      "safeStretchArea": "center region only",
+      "protectedCorners": "20px on all sides",
+      "recommendedNineSliceInsets": [
+        20,
+        20,
+        20,
+        20
+      ]
+    },
+    {
+      "id": "frame_label_black",
+      "file": "frame_label_black.png",
+      "category": "frame",
+      "width": 220,
+      "height": 87,
+      "aspectRatio": 2.5287,
+      "alpha": true,
+      "qaStatus": "PASS",
+      "sha256": "f6902ccba013ec803c717af90568698825e889e2061cd27ad9bbb9f3a965acf9",
+      "notes": "nine-slice shell; protected corners 20px; empty shell",
+      "safeStretchArea": "center region only",
+      "protectedCorners": "20px on all sides",
+      "recommendedNineSliceInsets": [
+        20,
+        20,
+        20,
+        20
+      ]
+    },
+    {
+      "id": "divider_handdrawn",
+      "file": "divider_handdrawn.png",
+      "category": "decorative",
+      "width": 278,
+      "height": 62,
+      "aspectRatio": 4.4839,
+      "alpha": true,
+      "qaStatus": "PASS",
+      "sha256": "5ca650003f24e5f04acf4e55b6af7635142776c33b01ff070eae2150d6bcaaac",
+      "notes": "proportional/repeat only"
+    },
+    {
+      "id": "grain_overlay",
+      "file": "grain_overlay.png",
+      "category": "decorative",
+      "width": 314,
+      "height": 146,
+      "aspectRatio": 2.1507,
+      "alpha": true,
+      "qaStatus": "PASS",
+      "sha256": "6d2910e703edaa7135664151b39bee9f234276ce2bc465869f43f0eb6c7aad68",
+      "notes": "proportional/repeat only; transparent grain only"
+    }
+  ]
+}
