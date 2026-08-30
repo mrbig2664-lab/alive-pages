@@ -1141,3 +1141,37 @@ body { overflow-x:hidden; overflow-y:auto; }
   .app-shell[data-layout-mode="folded"] .smoke-primary { height:60px; min-height:60px; }
   .app-shell[data-layout-mode="folded"] .quick-button.quick-button-other { height:52px; min-height:52px; }
 }
+
+/* Folded detail lock: the focus card is a vertical information stack.
+   Flex rows prevent the target, current count, and meter from sharing a line. */
+.app-shell[data-layout-mode="folded"] .focus-target-body {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:clamp(5px,.55vw,11px);
+  width:100%;
+  min-width:0;
+  margin:0;
+  text-align:center;
+}
+.app-shell[data-layout-mode="folded"] .focus-target-body strong,
+.app-shell[data-layout-mode="folded"] .focus-target-body b,
+.app-shell[data-layout-mode="folded"] .focus-target-body small,
+.app-shell[data-layout-mode="folded"] .focus-target-body .focus-meter {
+  display:block;
+  position:static;
+  flex:0 0 auto;
+  line-height:1.08;
+}
+.app-shell[data-layout-mode="folded"] .focus-target-body strong { white-space:nowrap; }
+.app-shell[data-layout-mode="folded"] .focus-target-body b { line-height:.95; }
+.app-shell[data-layout-mode="folded"] .focus-target-body .focus-meter { width:min(78%,520px); }
+
+@media (max-width:759px) {
+  .app-shell[data-layout-mode="folded"] .focus-target-body { gap:5px; }
+  .app-shell[data-layout-mode="folded"] .focus-target-body strong { font-size:18px; }
+  .app-shell[data-layout-mode="folded"] .focus-target-body b { font-size:clamp(38px,10vw,60px); }
+  .app-shell[data-layout-mode="folded"] .focus-target-body small { font-size:10px; }
+  .app-shell[data-layout-mode="folded"] .focus-target-body .focus-meter { width:78%; }
+}
