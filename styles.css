@@ -805,3 +805,159 @@ body { overflow-x:hidden; overflow-y:auto; }
   }
   .app-shell[data-layout-mode="unfolded"] .game-nav { width:min(1160px,100%); }
 }
+
+/* Phase 2C: Find N6 first-screen composition.
+   The viewport mode owns the information architecture; the room anchors own
+   only the scene composition. No portrait page is scaled to fake Unfolded. */
+.app-shell[data-layout-mode="unfolded"] .game-screen {
+  display:grid;
+  grid-template-rows:minmax(0,66fr) minmax(0,18fr) minmax(0,16fr);
+  gap:0;
+  width:100%;
+  max-width:none;
+  height:100svh;
+  min-height:0;
+  padding:clamp(18px,2.4vw,60px);
+  overflow:hidden;
+  border-radius:24px;
+}
+.app-shell[data-layout-mode="unfolded"] .game-layout {
+  grid-row:1;
+  display:grid;
+  grid-template-columns:minmax(0,2fr) minmax(0,1fr);
+  gap:clamp(12px,1vw,24px);
+  width:100%;
+  height:100%;
+  min-height:0;
+  margin:0;
+}
+.app-shell[data-layout-mode="unfolded"] .game-world,
+.app-shell[data-layout-mode="unfolded"] .world-stage-wrap,
+.app-shell[data-layout-mode="unfolded"] .room-scene { min-height:0; height:100%; }
+.app-shell[data-layout-mode="unfolded"] .game-hud {
+  display:flex;
+  flex-direction:column;
+  gap:clamp(10px,1vw,20px);
+  min-height:0;
+  padding:0;
+}
+.app-shell[data-layout-mode="unfolded"] .hud-status { flex:1 1 65%; min-height:0; }
+.app-shell[data-layout-mode="unfolded"] .today-state { height:100%; min-height:0; padding:clamp(20px,1.5vw,38px); }
+.app-shell[data-layout-mode="unfolded"] .state-title { margin-bottom:clamp(14px,1.2vw,28px); font-size:clamp(16px,1.2vw,30px); }
+.state-rows { display:grid; gap:0; }
+.state-row { display:grid; grid-template-columns:clamp(28px,2vw,48px) minmax(0,1fr) auto; align-items:center; gap:clamp(7px,.8vw,16px); min-height:clamp(50px,4.5vw,90px); border-top:1px solid var(--shell-soft-line); font-size:clamp(13px,1.05vw,25px); }
+.state-row img { width:clamp(22px,1.6vw,38px); height:clamp(22px,1.6vw,38px); object-fit:contain; }
+.state-row strong { font-family:var(--mono); font-size:clamp(12px,1vw,24px); font-weight:500; white-space:nowrap; }
+.state-mark { display:grid; place-items:center; width:clamp(24px,1.6vw,38px); height:clamp(24px,1.6vw,38px); border:2px solid var(--shell-ink); border-radius:50%; font-family:var(--mono); font-size:clamp(9px,.7vw,16px); }
+.app-shell[data-layout-mode="unfolded"] .mood-entry { flex:0 0 31%; min-height:0; padding:clamp(20px,1.5vw,38px); }
+.app-shell[data-layout-mode="unfolded"] .mood-entry span { font-size:clamp(16px,1.15vw,28px); }
+.app-shell[data-layout-mode="unfolded"] .mood-entry small { align-self:end; font-family:var(--mono); font-size:clamp(10px,.8vw,18px); opacity:.68; }
+.mood-options { display:flex; justify-content:space-between; align-items:center; gap:8px; margin-top:auto; }
+.mood-options b { display:grid; place-items:center; width:clamp(42px,3vw,70px); height:clamp(42px,3vw,70px); border:2px solid var(--shell-ink); border-radius:50%; font-size:clamp(11px,.9vw,20px); font-weight:700; }
+.mood-options b:first-child { background:#b6d879; }
+.mood-options b:nth-child(2) { background:#f2d46f; }
+.mood-options b:last-child { background:#e89879; }
+.app-shell[data-layout-mode="unfolded"] .game-focus { display:none; }
+.app-shell[data-layout-mode="unfolded"] .game-action-row {
+  grid-row:2;
+  display:block;
+  width:100%;
+  height:100%;
+  min-height:0;
+  margin:0;
+}
+.app-shell[data-layout-mode="unfolded"] .quick-log { display:flex; flex-direction:column; height:100%; padding:clamp(12px,1vw,24px) 0 0; }
+.app-shell[data-layout-mode="unfolded"] .quick-log .section-kicker { flex:0 0 auto; min-height:clamp(28px,2.5vw,54px); padding:0 clamp(4px,.5vw,12px); font-size:clamp(15px,1.1vw,27px); }
+.app-shell[data-layout-mode="unfolded"] .quick-buttons { flex:1; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(8px,.8vw,18px); min-height:0; margin-top:clamp(8px,.6vw,16px); }
+.app-shell[data-layout-mode="unfolded"] .quick-button { display:grid; grid-template-columns:auto 1fr; grid-template-rows:1fr auto; align-content:center; gap:clamp(5px,.5vw,12px); min-height:0; height:100%; padding:clamp(10px,1vw,24px); border-width:10px; }
+.app-shell[data-layout-mode="unfolded"] .quick-button .quick-icon { grid-row:1/-1; align-self:center; }
+.quick-icon { display:grid; place-items:center; min-width:clamp(24px,2vw,46px); min-height:clamp(24px,2vw,46px); font-size:clamp(18px,1.4vw,32px); font-weight:700; }
+.quick-icon img { width:100%; height:100%; object-fit:contain; }
+.app-shell[data-layout-mode="unfolded"] .quick-button b { align-self:end; font-size:clamp(14px,1.1vw,27px); }
+.app-shell[data-layout-mode="unfolded"] .quick-button small { font-size:clamp(9px,.7vw,16px); }
+.app-shell[data-layout-mode="unfolded"] .game-nav { grid-row:3; align-self:stretch; width:100%; height:100%; min-height:0; margin:0; }
+.app-shell[data-layout-mode="unfolded"] .game-nav button { min-height:0; height:100%; gap:clamp(5px,.5vw,12px); font-size:clamp(14px,1.1vw,27px); }
+.app-shell[data-layout-mode="unfolded"] .game-nav button span { font-size:clamp(24px,2vw,48px); }
+.app-shell[data-layout-mode="unfolded"] .game-nav button b { font-size:clamp(13px,1vw,24px); }
+.app-shell[data-layout-mode="unfolded"] .game-action-row > .quick-log { width:100%; }
+.app-shell[data-layout-mode="unfolded"] .smoke-action-wrap { display:none; }
+
+/* The Folded target is portrait even when its physical CSS width exceeds the
+   compact breakpoint. It keeps the action-first order and no side HUD. */
+.app-shell[data-layout-mode="folded"] .game-screen {
+  display:grid;
+  grid-template-rows:minmax(300px,38fr) minmax(140px,16fr) minmax(250px,46fr);
+  gap:0;
+  width:100%;
+  max-width:none;
+  height:100svh;
+  min-height:0;
+  padding:clamp(10px,2.4vw,28px) clamp(10px,3.2vw,36px) clamp(10px,2.4vw,28px);
+  overflow:hidden;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+}
+.app-shell[data-layout-mode="folded"] .game-layout { grid-row:1; display:block; width:100%; height:100%; min-height:0; margin:0; }
+.app-shell[data-layout-mode="folded"] .game-world,
+.app-shell[data-layout-mode="folded"] .world-stage-wrap,
+.app-shell[data-layout-mode="folded"] .room-scene { min-height:0; height:100%; }
+.app-shell[data-layout-mode="folded"] .game-hud { display:none; }
+.app-shell[data-layout-mode="folded"] .game-focus { grid-row:2; display:flex; flex-direction:column; justify-content:center; width:100%; height:100%; min-height:0; margin:0; }
+.app-shell[data-layout-mode="folded"] .focus-note { display:flex; flex-direction:column; justify-content:center; height:100%; padding:clamp(8px,1.2vw,18px) 0; }
+.app-shell[data-layout-mode="folded"] .note-heading { font-size:clamp(15px,1.5vw,28px); }
+.app-shell[data-layout-mode="folded"] .focus-target { align-items:flex-start; width:100%; min-height:clamp(150px,12vw,260px); margin-top:clamp(8px,1vw,20px); padding:clamp(12px,1.2vw,22px); }
+.app-shell[data-layout-mode="folded"] .focus-target > img { flex:0 0 auto; margin-top:4px; }
+.app-shell[data-layout-mode="folded"] .focus-target-body { display:grid; flex:1; gap:clamp(4px,.5vw,10px); min-width:0; }
+.app-shell[data-layout-mode="folded"] .focus-target-body strong { font-size:clamp(20px,2vw,38px); }
+.app-shell[data-layout-mode="folded"] .focus-target-body b { font-family:var(--mono); font-size:clamp(32px,4vw,72px); line-height:.95; }
+.app-shell[data-layout-mode="folded"] .focus-target-body small { font-family:var(--mono); font-size:clamp(10px,.9vw,18px); opacity:.68; }
+.focus-meter { display:block; height:clamp(7px,.7vw,14px); overflow:hidden; border:2px solid var(--shell-ink); background:rgba(255,250,240,.65); }
+.focus-meter em { display:block; height:100%; background:var(--shell-red); }
+.app-shell[data-layout-mode="folded"] .game-action-row { grid-row:3; display:flex; flex-direction:column; justify-content:flex-start; gap:clamp(8px,1vw,18px); width:100%; height:100%; min-height:0; margin:0; }
+.app-shell[data-layout-mode="folded"] .smoke-action-wrap { align-self:stretch; display:flex; align-items:center; width:100%; flex:1 1 auto; }
+.app-shell[data-layout-mode="folded"] .smoke-primary { width:100%; min-height:clamp(80px,8vw,150px); }
+.app-shell[data-layout-mode="folded"] .smoke-primary > b { font-size:clamp(18px,1.8vw,34px); }
+.app-shell[data-layout-mode="folded"] .smoke-count-outside strong { font-size:clamp(28px,3vw,56px); }
+.app-shell[data-layout-mode="folded"] .quick-log { width:100%; margin-top:auto; flex:0 0 auto; }
+.app-shell[data-layout-mode="folded"] .quick-log .section-kicker { display:none; }
+.app-shell[data-layout-mode="folded"] .quick-buttons { display:grid; grid-template-columns:1fr; height:auto; margin:0; }
+.app-shell[data-layout-mode="folded"] .quick-button { display:none; }
+.app-shell[data-layout-mode="folded"] .quick-button.quick-button-other { display:grid; grid-template-columns:auto 1fr; min-height:clamp(48px,4.5vw,88px); padding:clamp(8px,1vw,18px); }
+.app-shell[data-layout-mode="folded"] .quick-button.quick-button-other small { display:none; }
+.app-shell[data-layout-mode="folded"] .game-nav { display:none; }
+
+/* Phase 2C room anchors: same room-scale tokens, target-specific spacing. */
+.app-shell[data-layout-mode="unfolded"] .room-anchor.anchor-bed { left:1.5%; bottom:7%; width:36%; }
+.app-shell[data-layout-mode="unfolded"] .room-anchor.anchor-protagonist { left:34%; bottom:5%; }
+.app-shell[data-layout-mode="unfolded"] .room-anchor.anchor-egg { left:54%; bottom:5%; }
+.app-shell[data-layout-mode="unfolded"] .room-anchor.anchor-plant { right:29%; top:28%; bottom:auto; height:var(--room-scale-plant); }
+.app-shell[data-layout-mode="unfolded"] .room-anchor.anchor-seed-jar { right:17%; bottom:7%; }
+.app-shell[data-layout-mode="unfolded"] .room-anchor.anchor-table { right:24%; top:58%; bottom:auto; width:18%; }
+.app-shell[data-layout-mode="unfolded"] .room-anchor.anchor-cup { right:27%; top:62%; bottom:auto; width:6%; }
+.app-shell[data-layout-mode="unfolded"] .room-anchor.anchor-resident-left.room-resident { right:14%; top:49%; bottom:auto; }
+.app-shell[data-layout-mode="unfolded"] .room-anchor.anchor-resident-right.room-resident,
+.app-shell[data-layout-mode="unfolded"] .room-anchor.anchor-resident-right.room-smoke-beast { right:3%; bottom:7%; }
+.app-shell[data-layout-mode="unfolded"] .room-anchor.anchor-rug { left:4%; bottom:2%; width:34%; }
+
+.app-shell[data-layout-mode="folded"] .room-scene { border-radius:16px; }
+.app-shell[data-layout-mode="folded"] .room-anchor.anchor-window { top:11%; right:5%; width:29%; }
+.app-shell[data-layout-mode="folded"] .room-anchor.anchor-lamp { left:53%; width:12%; }
+.app-shell[data-layout-mode="folded"] .room-anchor.anchor-bed { left:1%; bottom:6%; width:43%; }
+.app-shell[data-layout-mode="folded"] .room-anchor.anchor-rug,
+.app-shell[data-layout-mode="folded"] .room-anchor.anchor-table,
+.app-shell[data-layout-mode="folded"] .room-anchor.anchor-stool,
+.app-shell[data-layout-mode="folded"] .room-anchor.anchor-cup,
+.app-shell[data-layout-mode="folded"] .room-anchor.anchor-slippers { display:none; }
+.app-shell[data-layout-mode="folded"] .room-anchor.anchor-protagonist { left:29%; bottom:5%; }
+.app-shell[data-layout-mode="folded"] .room-anchor.anchor-egg { left:58%; bottom:5%; }
+.app-shell[data-layout-mode="folded"] .room-anchor.anchor-plant { right:11%; top:43%; bottom:auto; height:10%; }
+.app-shell[data-layout-mode="folded"] .room-anchor.anchor-seed-jar { right:3%; bottom:8%; height:var(--room-scale-jar); }
+.app-shell[data-layout-mode="folded"] .room-anchor.room-resident { display:none; }
+.app-shell[data-layout-mode="folded"] .room-anchor.anchor-resident-right.room-smoke-beast { right:4%; bottom:8%; }
+
+@media (max-width:759px) {
+  .app-shell[data-layout-mode="folded"] .game-screen { padding:8px 13px calc(8px + env(safe-area-inset-bottom)); }
+  .app-shell[data-layout-mode="folded"] .game-layout { display:block; }
+  .app-shell[data-layout-mode="folded"] .room-scene { border-radius:18px; }
+}

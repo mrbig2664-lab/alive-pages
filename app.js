@@ -6,7 +6,7 @@ import {
   finalizeLifeSeeds, hasLifeRecord, localDateKey, localTime, pendingCount, settlementSummary,
   allocateLifeSeed, smokeCount
 } from './v4/domain.js';
-import { layoutModeForWidth } from './v4/layout.js';
+import { layoutModeForViewport } from './v4/layout.js';
 
 const store = createStore(TIMEZONE);
 const shell = document.querySelector('#app-shell');
@@ -32,7 +32,7 @@ let smokeTimer;
 
 function setState(next) {
   state = next;
-  applyLayoutMode(ui.modeOverride || layoutModeForWidth(window.innerWidth));
+  applyLayoutMode(ui.modeOverride || layoutModeForViewport(window.innerWidth, window.innerHeight));
   state.world.airState = deriveAir(state, currentDate);
   const pending = pendingCount(state);
   if (syncDot) syncDot.dataset.status = pending ? 'pending' : 'saved';
@@ -48,7 +48,8 @@ function applyLayoutMode(mode) {
 }
 function updateLayoutMode() {
   if (!state || ui.modeOverride) return false;
-  const changed = applyLayoutMode(layoutModeForWidth(window.innerWidth));
+  const viewport = window.visualViewport;
+  const changed = applyLayoutMode(layoutModeForViewport(viewport?.width || window.innerWidth, viewport?.height || window.innerHeight));
   if (changed) render();
   return changed;
 }
@@ -164,19 +165,39 @@ function renderMorningSummary() {
 }
 function renderFocus() {
   const target = Number(todayFocus().target || 10);
-  return `<section class="focus-note" aria-label="今天一件事"><div class="note-heading"><span>今天，先养这一件。</span><img src="${asset('ui/ui_tape_red.png')}" alt="" aria-hidden="true" /></div><button class="focus-target" data-action="edit-focus" aria-label="调整今天目标：不超过 ${target} 支"><img src="${asset('ui/ui_smoke_icon.png')}" alt="" aria-hidden="true" /><strong>不超过 ${target} 支</strong></button></section>`;
+  const progress = Math.min(100, target ? (todaySmoke() / target) * 100 : 0);
+  return `<section class="focus-note" aria-label="今天一件事"><div class="note-heading"><span>今天，先养这一件。</span><img src="${asset('ui/ui_tape_red.png')}" alt="" aria-hidden="true" /></div><button class="focus-target" data-action="edit-focus" aria-label="调整今天目标：不超过 ${target} 支"><img src="${asset('ui/ui_smoke_icon.png')}" alt="" aria-hidden="true" /><span class="focus-target-body"><strong>不超过 ${target} 支</strong><b>${todaySmoke()}支</b><small>目标 ≤${target}支</small><i class="focus-meter"><em style="width:${progress}%"></em></i></span></button></section>`;
 }
-function renderSmokeAction() {
+function renderSmokeAction() { return `<div class="smoke-action-wrap"><button class="smoke-primary" data-action="smoke" aria-label="抽了一支，记录一支烟"><b>＋ 抽了一支</b></button></div>`; }
+function renderQuickLog() {
+  const icon = file => `<span class="quick-icon">${file ? `<img src="${file}" alt="" aria-hidden="true" />` : '＋'}</span>`;
+  return `<section class="quick-log" aria-label="快速记录"><div class="section-kicker"><span>快速记录</span><small>输入保持很小</small></div><div class="quick-buttons">
+    <button class="quick-button quick-button-smoke" data-action="smoke">${icon(asset('ui/ui_smoke_icon.png'))}<b>抽烟</b><small>记录一支</small></button>
+    <button class="quick-button quick-button-drink" data-action="simple-log" data-log-type="drinkDaily">${icon(null)}<b>喝酒</b><small>记一杯</small></button>
+    <button class="quick-button quick-button-move" data-action="simple-log" data-log-type="moveEvent">${icon(null)}<b>运动</b><small>记一下</small></button>
+    <button class="quick-button quick-button-other muted" data-action="other-log">${icon(null)}<b>其它</b><small>更多记录</small></button>
+  </div></section>`;
+}
+function renderStatus() {
   const target = Number(todayFocus().target || 10);
-  return `<div class="smoke-action-wrap"><div class="smoke-count-outside" aria-live="polite"><span>今天</span><strong>${todaySmoke()}支</strong><em>目标 ≤${target}支</em></div><button class="smoke-primary" data-action="smoke" aria-label="抽了一支，记录一支烟"><b>＋ 抽了一支</b></button></div>`;
+  const drink = dayRecords('drinkDaily').length ? '已记' : 'Dry';
+  const move = dayRecords('moveEvent').reduce((total, record) => total + Number(record.durationMinutes || 0), 0);
+  const sleep = dayRecords('sleepLog').length ? '已记' : '—';
+  const water = dayRecords('waterEvent').length;
+  return `<section class="today-state" aria-label="今日状态"><div class="state-title">今日状态</div><div class="state-rows">
+    <div class="state-row"><img src="${asset('ui/ui_smoke_icon.png')}" alt="" aria-hidden="true" /><span>抽烟</span><strong>${todaySmoke()} / ${target} 支</strong></div>
+    <div class="state-row"><span class="state-mark">酒</span><span>喝酒</span><strong>${drink}</strong></div>
+    <div class="state-row"><span class="state-mark">动</span><span>运动</span><strong>${move ? `${move} min` : '—'}</strong></div>
+    <div class="state-row"><span class="state-mark">眠</span><span>睡眠</span><strong>${sleep}</strong></div>
+    <div class="state-row"><span class="state-mark">水</span><span>喝水</span><strong>${water} / 8 杯</strong></div>
+  </div></section>`;
 }
-function renderQuickLog() { return `<section class="quick-log"><div class="section-kicker"><span>快速记录</span><small>输入保持很小</small></div><div class="quick-buttons"><button class="quick-button muted" data-action="other-log"><span>＋</span><b>记录其他</b><small>水 / 酒 / 运动 / 睡眠</small></button></div></section>`; }
-function renderStatus() { const target = Number(todayFocus().target || 10); return `<section class="today-state" aria-label="今日状态"><div class="state-title">今日状态</div><div class="state-main"><img src="${asset('ui/ui_smoke_icon.png')}" alt="" aria-hidden="true" /><strong>${todaySmoke()}支</strong><small>目标 ≤${target}支</small></div></section>`; }
-function renderMood() { const checkin = todayCheckin(); const mood = checkin ? (checkin.energy >= 4 ? 'good' : checkin.energy <= 2 ? 'rough' : 'okay') : 'unset'; return `<button class="mood-entry ${mood}" data-action="${checkin ? 'show-settlement' : 'checkin'}"><span>今天怎么样？</span><b>${checkin ? (mood === 'good' ? '还不错' : mood === 'rough' ? '有点累' : '还行') : '晚上花 10 秒记一下'}</b><i>→</i></button>`; }
+function renderMood() { const checkin = todayCheckin(); const mood = checkin ? (checkin.energy >= 4 ? 'good' : checkin.energy <= 2 ? 'rough' : 'okay') : 'unset'; return `<button class="mood-entry ${mood}" data-action="${checkin ? 'show-settlement' : 'checkin'}"><span>今天怎么样？</span><div class="mood-options"><b>好</b><b>一般</b><b>不好</b></div><small>${checkin ? (mood === 'good' ? '还不错' : mood === 'rough' ? '有点累' : '还行') : '晚上花 10 秒记一下'}</small><i>→</i></button>`; }
 function renderGameNav() { return `<nav class="game-nav" aria-label="游戏导航"><button class="active" data-action="home"><span>⌂</span><b>房间</b></button><button data-action="not-ready"><span>⌕</span><b>发现</b></button><button data-action="not-ready"><span>▱</span><b>故事</b></button><button data-action="not-ready"><span>○</span><b>我的</b></button></nav>`; }
 function renderDevTools() { return `<section class="dev-tools"><span>DEV ONLY · ${esc(currentDate)}</span><button data-action="set-mode" data-mode="folded">折叠测试</button><button data-action="set-mode" data-mode="unfolded">展开测试</button><button data-action="reset">清空 Slice 01 数据</button><button data-action="seed-encounter">模拟烟雾兽已遇见</button><button data-action="next-day">模拟下一天</button><small>仅在地址带 ?dev=1 时出现；只操作当前本机演示数据。</small></section>`; }
 function renderToday() {
-  return `<section class="game-screen"><div class="game-layout"><div class="game-world"><div class="world-stage-wrap">${renderRoom()}</div></div><aside class="game-hud"><div class="hud-status">${renderStatus()}</div>${renderMood()}</aside></div><section class="game-focus">${renderFocus()}</section><section class="game-action-row">${renderSmokeAction()}${renderQuickLog()}</section>${state.deviceMode === 'unfolded' ? renderGameNav() : ''}${ui.dev ? renderDevTools() : ''}</section>`;
+  const unfolded = state.deviceMode === 'unfolded';
+  return `<section class="game-screen"><div class="game-layout"><div class="game-world"><div class="world-stage-wrap">${renderRoom()}</div></div><aside class="game-hud"><div class="hud-status">${renderStatus()}</div>${renderMood()}</aside></div>${unfolded ? '' : `<section class="game-focus">${renderFocus()}</section>`}<section class="game-action-row">${unfolded ? renderQuickLog() : `${renderSmokeAction()}${renderQuickLog()}`}</section>${unfolded ? renderGameNav() : ''}${ui.dev ? renderDevTools() : ''}</section>`;
 }
 function renderNurture() {
   const ledger = currentSeedLedger(state, currentDate);
