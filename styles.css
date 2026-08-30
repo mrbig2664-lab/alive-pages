@@ -651,60 +651,110 @@ body { overflow-x:hidden; overflow-y:auto; }
   .nurture-fx { animation:none; }
 }
 
-/* Room Zero layout lock: size everything from the room, never from the source PNG. */
-.room-scene .room-egg {
-  width:auto !important;
-  height:25% !important;
-  left:61% !important;
-  right:auto !important;
-  bottom:6% !important;
-  opacity:1 !important;
-  filter:none !important;
-  mix-blend-mode:normal !important;
-  background:transparent !important;
-  z-index:12 !important;
+/* Phase 2: Room Zero composition system.
+   All anchors size from the room box; intrinsic PNG dimensions never set scale. */
+.room-scene {
+  --room-scale-zhan:33%;
+  --room-scale-egg:22%;
+  --room-scale-muscle:19%;
+  --room-scale-liver:16%;
+  --room-scale-smoke:15%;
+  --room-scale-moon:15%;
+  --room-scale-water:13%;
+  --room-scale-jar:9%;
+  --room-scale-plant:11%;
 }
-.room-scene .room-egg > img { opacity:1 !important; filter:none !important; }
-.room-scene .room-zhanzhan { width:auto !important; height:33% !important; left:35% !important; right:auto !important; bottom:6% !important; z-index:10 !important; }
-.room-scene .room-bed { width:35% !important; left:2% !important; right:auto !important; bottom:6% !important; z-index:3 !important; }
-.room-scene .room-window { width:23% !important; right:9% !important; left:auto !important; top:15% !important; z-index:2 !important; }
-.room-scene .room-lamp { width:auto !important; height:18% !important; left:54% !important; top:0 !important; z-index:4 !important; }
-.room-scene .room-plant { width:auto !important; height:15% !important; right:24% !important; left:auto !important; bottom:22% !important; z-index:8 !important; }
-.room-scene .room-seed-jar { width:auto !important; height:10% !important; right:4% !important; left:auto !important; bottom:25% !important; z-index:9 !important; }
-.room-scene .room-smoke-beast { width:auto !important; height:16% !important; right:5% !important; left:auto !important; bottom:8% !important; z-index:11 !important; filter:none !important; }
-.room-scene .room-resident { width:auto !important; right:auto !important; transform:none !important; z-index:10 !important; }
-.room-scene .room-resident.anchor-right { right:17% !important; left:auto !important; bottom:9% !important; top:auto !important; }
-.room-scene .room-resident.anchor-window { right:16% !important; left:auto !important; top:36% !important; bottom:auto !important; }
-.room-scene .resident-liver { height:17% !important; }
-.room-scene .resident-muscle { height:22% !important; }
-.room-scene .resident-moon { height:16% !important; }
-.room-scene .resident-water { height:14% !important; }
-.room-scene .room-rug { width:36% !important; left:34% !important; right:auto !important; bottom:3% !important; z-index:2 !important; }
-.room-scene .room-table { width:22% !important; right:3% !important; left:auto !important; bottom:7% !important; z-index:3 !important; }
-.room-scene .room-stool { width:11% !important; right:13% !important; left:auto !important; bottom:3% !important; z-index:4 !important; }
-.room-scene .room-cup { width:7% !important; right:13% !important; left:auto !important; bottom:28% !important; z-index:5 !important; }
-.room-scene .room-slippers { width:14% !important; left:27% !important; right:auto !important; bottom:4% !important; z-index:5 !important; }
+.room-anchor {
+  position:absolute;
+  display:block;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  line-height:0;
+}
+.room-anchor > img {
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  user-select:none;
+  pointer-events:none;
+  filter:drop-shadow(2px 2px 0 rgba(17,17,17,.72));
+}
+/* BACK 1–10: room surfaces and wall-mounted scene elements. */
+.room-scene .room-wall { z-index:0; }
+.room-scene .room-floor { z-index:1; }
+.room-anchor.anchor-window { top:14%; right:9%; width:23%; aspect-ratio:155 / 140; z-index:10; }
+.room-anchor.anchor-lamp { top:0; left:52%; width:10%; aspect-ratio:118 / 130; transform:translateX(-50%); z-index:11; }
+/* MID 20–50: furniture and small room objects. */
+.room-anchor.anchor-bed { left:2%; bottom:7%; width:35%; aspect-ratio:198 / 126; z-index:30; }
+.room-anchor.anchor-rug { left:4%; bottom:2%; width:34%; aspect-ratio:226 / 120; z-index:20; }
+.room-anchor.anchor-table { right:5%; bottom:9%; width:19%; aspect-ratio:166 / 126; z-index:31; }
+.room-anchor.anchor-stool { right:13%; bottom:5%; width:10%; aspect-ratio:120 / 126; z-index:32; }
+.room-anchor.anchor-cup { right:14%; bottom:27%; width:7%; aspect-ratio:132 / 126; z-index:40; }
+.room-anchor.anchor-slippers { left:28%; bottom:4%; width:13%; aspect-ratio:163 / 130; z-index:40; }
+.room-anchor.anchor-plant { right:28%; bottom:32%; width:auto; height:var(--room-scale-plant); aspect-ratio:142 / 103; z-index:42; }
+.room-anchor.anchor-seed-jar { right:27%; bottom:7%; width:auto; height:var(--room-scale-jar); aspect-ratio:94 / 115; z-index:44; }
+/* FRONT 60–100: protagonist, egg and the two supporting-character slots. */
+.room-anchor.anchor-protagonist { left:32%; bottom:5%; width:auto; height:var(--room-scale-zhan); aspect-ratio:100 / 135; z-index:70; }
+.room-anchor.anchor-egg { left:50%; bottom:5%; width:auto; height:var(--room-scale-egg); aspect-ratio:149 / 163; z-index:72; }
+.room-anchor.anchor-resident-left { right:16%; bottom:7%; width:auto; height:var(--room-scale-liver); aspect-ratio:151 / 140; z-index:80; }
+.room-anchor.anchor-resident-right { right:2%; bottom:7%; width:auto; height:var(--room-scale-muscle); aspect-ratio:155 / 170; z-index:81; }
+.room-anchor.room-smoke-beast { width:auto; height:var(--room-scale-smoke); aspect-ratio:100 / 100; filter:none; }
+.room-anchor.room-smoke-beast > img { transition:transform .18s ease; filter:drop-shadow(3px 3px 0 rgba(17,17,17,.72)); }
+.room-anchor.room-smoke-beast:active > img { transform:scale(.96); }
+.room-anchor.room-resident > img { filter:drop-shadow(2px 2px 0 rgba(17,17,17,.65)); }
+.room-anchor.room-seed-jar > img { filter:drop-shadow(2px 2px 0 rgba(17,17,17,.65)); }
+.room-anchor.anchor-resident-left.resident-muscle { height:var(--room-scale-muscle); aspect-ratio:155 / 170; }
+.room-anchor.anchor-resident-left.resident-moon { height:var(--room-scale-moon); aspect-ratio:147 / 150; }
+.room-anchor.anchor-resident-left.resident-water { height:var(--room-scale-water); aspect-ratio:125 / 142; }
+.room-anchor.anchor-resident-left.resident-liver { height:var(--room-scale-liver); aspect-ratio:151 / 140; }
+.room-anchor.anchor-resident-right.resident-muscle { height:var(--room-scale-muscle); aspect-ratio:155 / 170; }
+.room-anchor.anchor-resident-right.resident-moon { height:var(--room-scale-moon); aspect-ratio:147 / 150; }
+.room-anchor.anchor-resident-right.resident-water { height:var(--room-scale-water); aspect-ratio:125 / 142; }
+.room-anchor.anchor-resident-right.resident-liver { height:var(--room-scale-liver); aspect-ratio:151 / 140; }
+.room-anchor.anchor-resident-right.room-smoke-beast { right:2%; bottom:7%; }
+.room-anchor.anchor-resident-left.room-resident { right:16%; bottom:7%; }
+.room-anchor.anchor-resident-right.room-resident { right:2%; bottom:7%; }
+.room-scene .room-asset { position:static; width:100%; height:100%; max-width:none; object-fit:contain; }
+.room-scene .room-label { z-index:90; }
+.room-scene .room-note { z-index:12; }
 
 @media (max-width:759px) {
-  .room-scene { height:56svh !important; min-height:360px !important; max-height:500px !important; }
-  .room-scene .room-rug,
-  .room-scene .room-table,
-  .room-scene .room-stool,
-  .room-scene .room-cup,
-  .room-scene .room-slippers { display:none !important; }
-  .room-scene .room-window { width:23% !important; right:10% !important; top:14% !important; }
-  .room-scene .room-lamp { height:18% !important; left:54% !important; }
-  .room-scene .room-plant { height:15% !important; right:20% !important; bottom:22% !important; }
-  .room-scene .room-seed-jar { height:10% !important; right:5% !important; bottom:24% !important; }
-  .room-scene .room-egg { height:25% !important; left:63% !important; bottom:5% !important; }
-  .room-scene .room-zhanzhan { height:33% !important; left:33% !important; bottom:5% !important; }
-  .room-scene .room-smoke-beast { height:16% !important; right:5% !important; bottom:7% !important; }
-  .room-scene .room-resident.anchor-right { right:18% !important; bottom:8% !important; }
-  .room-scene .room-resident.anchor-window { right:17% !important; top:34% !important; }
-  .room-scene .resident-liver { height:17% !important; }
-  .room-scene .resident-muscle { height:22% !important; }
-  .room-scene .resident-moon { height:16% !important; }
-  .room-scene .resident-water { height:14% !important; }
+  .room-scene {
+    --room-scale-zhan:34%;
+    --room-scale-egg:22%;
+    --room-scale-muscle:19%;
+    --room-scale-liver:16%;
+    --room-scale-smoke:15%;
+    --room-scale-moon:15%;
+    --room-scale-water:13%;
+    --room-scale-jar:9%;
+    --room-scale-plant:11%;
+  }
+  .room-anchor.anchor-window { top:13%; right:9%; width:25%; }
+  .room-anchor.anchor-lamp { left:53%; width:12%; }
+  .room-anchor.anchor-bed { left:1%; bottom:7%; width:40%; }
+  .room-anchor.anchor-rug,
+  .room-anchor.anchor-table,
+  .room-anchor.anchor-stool,
+  .room-anchor.anchor-cup,
+  .room-anchor.anchor-slippers { display:none; }
+  .room-anchor.anchor-plant { right:23%; bottom:32%; height:var(--room-scale-plant); }
+  .room-anchor.anchor-seed-jar { right:1%; bottom:28%; height:var(--room-scale-jar); }
+  .room-anchor.anchor-protagonist { left:29%; bottom:5%; }
+  .room-anchor.anchor-egg { left:62%; bottom:5%; }
+  .room-anchor.anchor-resident-left.room-resident { right:18%; bottom:8%; }
+  .room-anchor.anchor-resident-right.room-resident,
+  .room-anchor.anchor-resident-right.room-smoke-beast { right:3%; bottom:8%; }
+}
+
+@media (min-width:760px) {
+  /* The small table becomes a wall-side mid-layer object so the resident
+     slots remain clear on the floor; the stool is intentionally omitted. */
+  .room-anchor.anchor-table { top:36%; right:34%; bottom:auto; width:16%; }
+  .room-anchor.anchor-cup { top:41%; right:37%; bottom:auto; width:6%; }
+  .room-anchor.anchor-stool { display:none; }
 }
 
 /* Phase 1 layout architecture: one explicit mode contract, updated by app.js. */

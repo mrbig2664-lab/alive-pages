@@ -71,7 +71,10 @@ function copyForState() {
   return timeOfDay() === 'morning' ? '先住下吧。' : '回来啦？';
 }
 function dayRecords(type) { return state.records.filter(record => record.type === type && record.localDate === currentDate && !record.tombstone); }
-function roomImg(file, className, alt, extra = '') { return `<img class="room-asset ${className} ${extra}" src="${file}" alt="${esc(alt)}" draggable="false" />`; }
+function roomImg(file, className, alt, extra = '', anchor) {
+  const anchorKey = anchor || className.replace(/^room-/, '').replaceAll('-', '_');
+  return `<div class="room-anchor anchor-${anchorKey.replace('_','-')}" data-room-anchor="${anchorKey}"><img class="room-asset ${className} ${extra}" src="${file}" alt="${esc(alt)}" draggable="false" /></div>`;
+}
 function fullStageAsset(prefix, stage) {
   const index = Math.max(1, Math.min(6, Number(String(stage || 'stage_01').replace(/\D/g, '') || 1)));
   return mvpAsset('batch01', `${prefix}_${String(index).padStart(2, '0')}${prefix === 'egg_stage' ? ({1:'_still',2:'_wiggle',3:'_hairline_crack',4:'_crack',5:'_almost',6:'_mystery'}[index]) : ''}.png`);
@@ -105,20 +108,21 @@ function zhanzhanVisualState() {
 function residentRecords() {
   const residents = [];
   const latest = type => dayRecords(type).sort((a,b) => String(a.occurredAt || '').localeCompare(String(b.occurredAt || ''))).at(-1);
-  if (latest('drinkDaily')) residents.push({ id:'liverBoy', src:mvpAsset('batch02','liver_normal.png'), alt:'肝肝', cls:'resident-liver', anchor:'right' });
-  if (latest('moveEvent')) residents.push({ id:'muscleBoy', src:mvpAsset('batch02','muscle_normal.png'), alt:'肌肉仔', cls:'resident-muscle', anchor:'right' });
-  if (latest('sleepLog')) residents.push({ id:'moonBoy', src:mvpAsset('batch02','moon_normal.png'), alt:'月亮仔', cls:'resident-moon', anchor:'window' });
-  if (latest('waterEvent')) residents.push({ id:'waterBoy', src:mvpAsset('batch02','water_normal.png'), alt:'水滴仔', cls:'resident-water', anchor:'window' });
-  // Smoke Beast has its own interaction layer below. Keep one additional resident
-  // here so Room Zero never exceeds “ZhanZhan + 2 residents”.
-  return residents.slice(0, 1);
+  if (latest('drinkDaily')) residents.push({ id:'liverBoy', src:mvpAsset('batch02','liver_normal.png'), alt:'肝肝', cls:'resident-liver' });
+  if (latest('moveEvent')) residents.push({ id:'muscleBoy', src:mvpAsset('batch02','muscle_normal.png'), alt:'肌肉仔', cls:'resident-muscle' });
+  if (latest('sleepLog')) residents.push({ id:'moonBoy', src:mvpAsset('batch02','moon_normal.png'), alt:'月亮仔', cls:'resident-moon' });
+  if (latest('waterEvent')) residents.push({ id:'waterBoy', src:mvpAsset('batch02','water_normal.png'), alt:'水滴仔', cls:'resident-water' });
+  // Two supporting slots are available. Smoke Beast occupies the right slot
+  // after the first encounter, so the room never becomes character-crowded.
+  const slotCount = currentEncounter(state) ? 1 : 2;
+  return residents.slice(0, slotCount).map((resident, index) => ({ ...resident, anchor:index === 0 ? 'resident_left' : 'resident_right' }));
 }
 function roomSeedBalance() {
   const ledger = currentSeedLedger(state, currentDate);
   return Number(state.world.lifeSeeds || 0) + Number(ledger?.remaining || 0);
 }
 function renderResidents() {
-  return residentRecords().map((resident, index) => `<button class="room-resident ${resident.cls} anchor-${resident.anchor || 'table'}" style="--resident-index:${index}" data-action="tap-resident" data-resident="${resident.id}" aria-label="${resident.alt}"><img class="resident-asset" src="${resident.src}" alt="${resident.alt}" draggable="false" /></button>`).join('');
+  return residentRecords().map(resident => `<button class="room-anchor room-resident ${resident.cls} anchor-${resident.anchor.replace('_','-')}" data-room-anchor="${resident.anchor}" data-action="tap-resident" data-resident="${resident.id}" aria-label="${resident.alt}"><img class="resident-asset" src="${resident.src}" alt="${resident.alt}" draggable="false" /></button>`).join('');
 }
 function renderRoom() {
   const air = state.world.airState === 'slightlyGrey' ? ' grey-air' : '';
@@ -130,24 +134,24 @@ function renderRoom() {
   const balance = roomSeedBalance();
   const windowFile = state.world.outsideStage !== 'blank' ? mvpAsset('batch01','window_early.png') : asset('room/room_window.png');
   const nurtureFx = ui.nurtureFx ? `<div class="nurture-fx" aria-hidden="true"><img src="${mvpAsset('batch01', ui.nurtureFx)}" alt="" /></div>` : '';
-  return `<section class="room-scene${air}" aria-label="Room Zero 小房间">
+  return `<section class="room-scene${air}" data-room-scene="room-zero" aria-label="Room Zero 小房间">
     <div class="room-wall"></div><div class="room-floor"></div>
     <div class="room-label"><span>ROOM ZERO</span></div>
     <div class="room-note"><span>${esc(copyForState())}</span><img src="${asset('ui/ui_tape_yellow.png')}" alt="" aria-hidden="true" /></div>
-    ${roomImg(windowFile, 'room-window', '窗户与窗外')}
-    ${roomImg(asset('room/room_lamp.png'), 'room-lamp', '吊灯')}
-    ${roomImg(asset('room/room_bed.png'), 'room-bed', '红橙色床')}
-    ${roomImg(asset('room/room_rug.png'), 'room-rug', '黄色地毯')}
-    ${roomImg(asset('room/room_table.png'), 'room-table', '小桌')}
-    ${roomImg(asset('room/room_stool.png'), 'room-stool', '小凳')}
-    ${roomImg(asset('room/room_cup.png'), 'room-cup', '有红心的杯子')}
-    ${roomImg(asset('room/room_slippers.png'), 'room-slippers', '拖鞋')}
-    ${roomImg(plant, 'room-plant', '房间植物')}
-    ${roomImg(egg, 'room-egg', '神秘蛋，安静地待着')}
-    ${roomImg(mvpAsset('batch02a', `zhanzhan_${zhanzhan}.png`), 'room-zhanzhan', '詹詹')}
-    <button class="room-seed-jar" data-action="tap-jar" aria-label="种子罐"><img src="${mvpAsset('batch01', jarAsset(balance))}" alt="种子罐" /></button>
+    ${roomImg(windowFile, 'room-window', '窗户与窗外', '', 'window')}
+    ${roomImg(asset('room/room_lamp.png'), 'room-lamp', '吊灯', '', 'lamp')}
+    ${roomImg(asset('room/room_bed.png'), 'room-bed', '红橙色床', '', 'bed')}
+    ${roomImg(asset('room/room_rug.png'), 'room-rug', '黄色地毯', '', 'rug')}
+    ${roomImg(asset('room/room_table.png'), 'room-table', '小桌', '', 'table')}
+    ${roomImg(asset('room/room_stool.png'), 'room-stool', '小凳', '', 'stool')}
+    ${roomImg(asset('room/room_cup.png'), 'room-cup', '有红心的杯子', '', 'cup')}
+    ${roomImg(asset('room/room_slippers.png'), 'room-slippers', '拖鞋', '', 'slippers')}
+    ${roomImg(plant, 'room-plant', '房间植物', '', 'plant')}
+    ${roomImg(egg, 'room-egg', '神秘蛋，安静地待着', '', 'egg')}
+    ${roomImg(mvpAsset('batch02a', `zhanzhan_${zhanzhan}.png`), 'room-zhanzhan', '詹詹', '', 'protagonist')}
+    <button class="room-anchor room-seed-jar anchor-seed-jar" data-room-anchor="seed_jar" data-action="tap-jar" aria-label="种子罐"><img src="${mvpAsset('batch01', jarAsset(balance))}" alt="种子罐" /></button>
     ${renderResidents()}
-    ${encounter ? `<button class="room-smoke-beast state-${smokeState}${ui.beastTap ? ' tap-react' : ''}" data-action="tap-beast" aria-label="烟雾兽，点击看看"><img src="${asset(`characters/smoke-beast/smoke_beast_${smokeState}.png`)}" alt="烟雾兽" draggable="false" />${ui.popMessage ? `<span class="dialogue"><img src="${asset('ui/ui_speech_bubble.png')}" alt="" aria-hidden="true" /><b>${esc(ui.popMessage)}</b></span>` : ''}</button>` : ''}
+    ${encounter ? `<button class="room-anchor room-smoke-beast anchor-resident-right state-${smokeState}${ui.beastTap ? ' tap-react' : ''}" data-room-anchor="resident_right" data-action="tap-beast" aria-label="烟雾兽，点击看看"><img src="${asset(`characters/smoke-beast/smoke_beast_${smokeState}.png`)}" alt="烟雾兽" draggable="false" />${ui.popMessage ? `<span class="dialogue"><img src="${asset('ui/ui_speech_bubble.png')}" alt="" aria-hidden="true" /><b>${esc(ui.popMessage)}</b></span>` : ''}</button>` : ''}
     ${nurtureFx}
     ${ui.roomFeedback ? `<div class="room-feedback" role="status">${esc(ui.roomFeedback)}</div>` : ''}
   </section>`;
