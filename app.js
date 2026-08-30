@@ -133,7 +133,9 @@ function renderRoom() {
   const smokeState = smokeVisualState();
   const encounter = Boolean(currentEncounter(state));
   const balance = roomSeedBalance();
-  const windowFile = state.world.outsideStage !== 'blank' ? mvpAsset('batch01','window_early.png') : asset('room/room_window.png');
+  // Both window states live in the approved Slice 01 production asset set.
+  // Do not request the non-existent full-mvp/batch01/window_early.png path.
+  const windowFile = state.world.outsideStage !== 'blank' ? asset('world/window_early.png') : asset('room/room_window.png');
   const nurtureFx = ui.nurtureFx ? `<div class="nurture-fx" aria-hidden="true"><img src="${mvpAsset('batch01', ui.nurtureFx)}" alt="" /></div>` : '';
   return `<section class="room-scene${air}" data-room-scene="room-zero" aria-label="Room Zero 小房间">
     <div class="room-wall"></div><div class="room-floor"></div>
@@ -166,7 +168,7 @@ function renderMorningSummary() {
 function renderFocus() {
   const target = Number(todayFocus().target || 10);
   const progress = Math.min(100, target ? (todaySmoke() / target) * 100 : 0);
-  return `<section class="focus-note" aria-label="今天一件事"><div class="note-heading"><span>今天，先养这一件。</span><img src="${asset('ui/ui_tape_red.png')}" alt="" aria-hidden="true" /></div><button class="focus-target" data-action="edit-focus" aria-label="调整今天目标：不超过 ${target} 支"><img src="${asset('ui/ui_smoke_icon.png')}" alt="" aria-hidden="true" /><span class="focus-target-body"><strong>不超过 ${target} 支</strong><b>${todaySmoke()}支</b><small>目标 ≤${target}支</small><i class="focus-meter"><em style="width:${progress}%"></em></i></span></button></section>`;
+  return `<section class="focus-note" aria-label="今天一件事"><div class="note-heading"><span>今天，先养这一件。</span><img src="${asset('ui/ui_tape_red.png')}" alt="" aria-hidden="true" /></div><button class="focus-target" data-action="edit-focus" aria-label="调整今天目标：不超过 ${target} 支"><img src="${asset('ui/ui_smoke_icon.png')}" alt="" aria-hidden="true" /><div class="focus-target-body"><strong>不超过 ${target} 支</strong><b>${todaySmoke()}支</b><small>目标 ≤${target}支</small><i class="focus-meter"><em style="width:${progress}%"></em></i></div></button></section>`;
 }
 function renderSmokeAction() { return `<div class="smoke-action-wrap"><button class="smoke-primary" data-action="smoke" aria-label="抽了一支，记录一支烟"><b>＋ 抽了一支</b></button></div>`; }
 function renderQuickLog() {
